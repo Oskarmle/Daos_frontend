@@ -1,0 +1,26 @@
+.profilePostContainer {
+  height: 700px;
+}
+
+.postHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 70px;
+  padding-right: 70px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.postHeader h1 {
+  color: #353a5d;
+  font-size: 38px;
+}
+
+.postContainer {
+  background: lightblue;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,44 @@
+.profileContainer {
+  height: 450px;
+  padding-left: 70px;
+  padding-right: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: row;
+}
+
+.profileInfo img {
+  width: 98px;
+  border-radius: 20px;
+  border: solid 4px #ffffff;
+  margin-right: 20px;
+}
+
+.profileText {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.name {
+  color: #bf1e2f;
+  font-size: 38px;
+  margin-bottom: 8px;
+}
+
+.secondaryText {
+  font-size: 16px;
+  color: #777777;
+}
+
+.profileButtons {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
