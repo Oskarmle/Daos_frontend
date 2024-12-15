@@ -1,12 +1,7 @@
 import "./App.css";
-import DesktopHeader from "./components/header/DesktopHeader";
 
 function App() {
-  return (
-    <>
-      <DesktopHeader></DesktopHeader>
-    </>
-  );
+  return <></>;
 }
 
 export default App;
