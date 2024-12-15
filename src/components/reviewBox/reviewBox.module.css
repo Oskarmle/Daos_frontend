@@ -1,0 +1,38 @@
+.reviewBox {
+  width: 25vw;
+  height: 320px;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #dddddd;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.review {
+  font-size: 16px;
+  text-align: center;
+  color: #353a5d;
+  line-height: 1.5;
+}
+
+.reviewPerson {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.reviewPerson img {
+  width: 40px;
+}
+.reviewName{
+    color: #BF1E2E;
+    font-size: 16px;
+}
+
+.reviewEnsemble{
+    color: #777777;
+    font-size: 16px;
+}

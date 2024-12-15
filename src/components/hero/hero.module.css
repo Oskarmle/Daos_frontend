@@ -1,0 +1,34 @@
+.heroContainer {
+  width: 100vw;
+  height: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 70px;
+  padding-right: 70px;
+  gap: 35px;
+}
+
+.contentLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.contentLeft h1 {
+  color: #bf1e2e;
+  font-size: 50px;
+  margin-bottom: 40px;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 20px;
+}
+
+.contentRight {
+  height: 325px;
+}
+
+.contentRight img {
+  height: 100%;
+}
