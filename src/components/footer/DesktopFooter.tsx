@@ -2,6 +2,11 @@ import Button from "../button/Button";
 import styles from "./footer.module.css";
 
 export default function DesktopFooter() {
+  // Actually not a scam, source: trust me bro
+  const handleGetScammedClick = () => {
+    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+  };
+
   return (
     <div className={styles.footerContainer}>
       <div className={styles.left}>
@@ -38,13 +43,16 @@ export default function DesktopFooter() {
       </div>
 
       <div className={styles.center}>
-        <img src="/img/footer-music.svg" alt="Illustration of a collection of musical sheet notes" />
-        <p>Privatlivspolitik</p>
+        <img
+          src="/img/footer-music.svg"
+          alt="Illustration of a collection of musical sheet notes"
+        />
+        <p onClick={handleGetScammedClick}>Privatlivspolitik</p>
       </div>
       <div className={styles.right}>
         <div className={styles.whiteBox}>
-            <p>BRAGT TIL DIG AF</p>
-            <img src="/img/logo2_gennemsigtig.png" alt="DAOS logo illustration" />
+          <p>BRAGT TIL DIG AF</p>
+          <img src="/img/logo2_gennemsigtig.png" alt="DAOS logo illustration" />
         </div>
       </div>
     </div>

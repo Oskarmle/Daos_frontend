@@ -1,11 +1,11 @@
 .heroContainer {
-  width: 100vw;
   height: 650px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: 70px;
-  padding-right: 70px;
+  width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
   gap: 35px;
 }
 
