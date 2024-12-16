@@ -32,10 +32,10 @@ function LoginComponent() {
       console.error("Login failed", error);
     },
     onSuccess: (response) => {
-      console.log("Login was a succes", response);
+      // console.log("Login was a succes", response);
 
       // access the access_token sent from the backend
-      console.log(response.data.access_token);
+      // console.log(response.data.access_token);
       localStorage.setItem('access_token', response.data.access_token);
     },
   });

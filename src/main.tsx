@@ -9,6 +9,8 @@ const queryClient = new QueryClient();
 import { routeTree } from "./routeTree.gen";
 import App from "./App";
 
+// import { tokenVerification } from "./auth/authGuard";
+
 // Create a new router instance
 const router = createRouter({ routeTree });
 

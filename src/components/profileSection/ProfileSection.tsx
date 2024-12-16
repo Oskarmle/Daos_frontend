@@ -20,8 +20,8 @@ export default function ProfileSection({
         <img src={profileImg} alt="Profile image of logged in user" />
         <div className={styles.profileText}>
           <h1 className={styles.name}>{profileName}</h1>
-            <p className={styles.secondaryText}>{createdAt}</p>
-            <p className={styles.secondaryText}>{lastLoggedIn}</p>
+          <p className={styles.secondaryText}>{createdAt}</p>
+          <p className={styles.secondaryText}>{lastLoggedIn}</p>
         </div>
       </div>
       <div className={styles.profileButtons}>
