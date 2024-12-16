@@ -1,40 +1,48 @@
 import { createFileRoute } from "@tanstack/react-router";
 import styles from "./auth.module.css";
 import Button from "../../components/button/Button";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 
-// using zod for validation
-const SignupSchema = z.object({
-  name: z.string().min(5, "Dit fulde navn er påkrævet"),
-  email: z.string().email("Indtast en gylding e-mailadresse"),
-  password: z
-    .string()
-    .min(6, "Adgangskoden skal være mindst 6 tegn")
-    .max(20, "Adgangskoden må ikke overstige 20 tegn"),
-  terms: z.boolean().refine((val) => val, "Du skal acceptere betingelserne"),
-  newsletter: z.boolean().optional(),
-});
-
-// TypeScript type inference from Zod schema
-type SignupFormData = z.infer<typeof SignupSchema>;
+// API URL
+const baseUrl = "http://localhost:3000";
 
 export const Route = createFileRoute("/auth/signup")({
   component: SignupComponent,
 });
+
+type SignupFormData = {
+  fullName: string;
+  email: string;
+  password: string;
+  terms: boolean;
+  newsletter?: boolean;
+};
 
 function SignupComponent() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignupFormData>({
-    resolver: zodResolver(SignupSchema),
+  } = useForm<SignupFormData>();
+
+  const mutation = useMutation<void, Error, SignupFormData>({
+    mutationFn: (newUser) => {
+      return axios.post(`${baseUrl}/auth/signup`, newUser);
+    },
+    onError: (error) => {
+      console.error("Signup failed", error);
+    },
+    onSuccess: (response) => {
+      // console.log('Signup was succesfull', data);
+      console.log("Signup was succesfull", response);
+    },
   });
 
   const onSubmit = (data: SignupFormData) => {
-    console.log("Form submitted:", data);
+    console.log(data);
+    mutation.mutate(data);
   };
 
   return (
@@ -45,15 +53,17 @@ function SignupComponent() {
         </h1>
         <form className={styles.signupForm} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.signupName}>
-            <label htmlFor="name">Fulde navn</label>
+            <label htmlFor="fullName">Fulde navn</label>
             <input
               type="text"
-              id="name"
+              id="fullName"
               placeholder="Dit navn her..."
-              {...register("name")}
+              {...register("fullName", { required: "Fulde navn er påkrævet" })}
             />
-            {errors.name && (
-              <p className={styles.error}>{errors.name.message}</p>
+            {errors.fullName && (
+              <p className={styles.error}>
+                {errors.fullName.message as string}
+              </p>
             )}
           </div>
           <div className={styles.signupEmail}>
@@ -62,10 +72,16 @@ function SignupComponent() {
               type="email"
               id="email"
               placeholder="Din email..."
-              {...register("email")}
+              {...register("email", {
+                required: "E-mail er påkrævet",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Ugyldig email",
+                },
+              })}
             />
             {errors.email && (
-              <p className={styles.error}>{errors.email.message}</p>
+              <p className={styles.error}>{errors.email.message as string}</p>
             )}
           </div>
           <div className={styles.signupPassword}>
@@ -74,17 +90,25 @@ function SignupComponent() {
               type="password"
               id="password"
               placeholder="Din kode..."
-              {...register("password")}
+              {...register("password", { required: "Adgangskode er påkrævet" })}
             />
             {errors.password && (
-              <p className={styles.error}>{errors.password.message}</p>
+              <p className={styles.error}>
+                {errors.password.message as string}
+              </p>
             )}
           </div>
           <div className={styles.checkbox}>
-            <input type="checkbox" id="terms" {...register("terms")} />
+            <input
+              type="checkbox"
+              id="terms"
+              {...register("terms", {
+                required: "Du skal acceptere betingelserne",
+              })}
+            />
             <label htmlFor="terms">Jeg accepterer betingelserne*</label>
             {errors.terms && (
-              <p className={styles.error}>{errors.terms.message}</p>
+              <p className={styles.error}>{errors.terms.message as string}</p>
             )}
           </div>
           <div className={styles.checkbox}>
