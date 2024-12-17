@@ -4,6 +4,7 @@ import Button from "../../components/button/Button";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { LoginFormData } from "../../types/types";
 
 // API URL
 const baseUrl = "http://localhost:3000";
@@ -11,11 +12,6 @@ const baseUrl = "http://localhost:3000";
 export const Route = createFileRoute("/auth/login")({
   component: LoginComponent,
 });
-
-type LoginFormData = {
-  email: string;
-  password: string;
-};
 
 function LoginComponent() {
   const {

@@ -6,20 +6,12 @@ import ProfileSection from "../../components/profileSection/ProfileSection";
 import ProfilePosts from "../../components/profilePosts/ProfilePosts";
 
 import { tokenVerification } from "../../auth/authGuard";
+import { DecodedToken } from "../../types/types";
 
 export const Route = createFileRoute("/profile/")({
   component: ProfilePage,
   beforeLoad: tokenVerification,
 });
-
-// type for decoded token
-type DecodedToken = {
-  fullName: string;
-  email: string;
-  ensembleIds: string[];
-  createdAt: string;
-  id: string;
-};
 
 function ProfilePage() {
   // let decodedToken: DecodedToken | null = null;

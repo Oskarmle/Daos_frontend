@@ -7,17 +7,10 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 import { createFileRoute } from "@tanstack/react-router";
+import { EnsemblePost } from "../../types/types";
 
 // API URL
 const baseUrl = "http://localhost:3000";
-
-type EnsemblePost = {
-  city: string;
-  name: string;
-  activeMusicians: string;
-  genre: string;
-  _id: string;
-};
 
 export const Route = createFileRoute("/ensemble/")({
   component: EnsembleComponent,
@@ -68,6 +61,7 @@ function EnsembleComponent() {
               size={ensemble.activeMusicians}
               genre={ensemble.genre}
               _id={ensemble._id}
+              registeredUsers={ensemble.registeredUsers}
             />
           ))}
       </div>

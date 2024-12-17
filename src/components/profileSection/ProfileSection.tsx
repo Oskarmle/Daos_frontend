@@ -1,12 +1,7 @@
+import { ProfileInfo } from "../../types/types";
 import Button from "../button/Button";
 import styles from "./profileSection.module.css";
 
-type ProfileInfo = {
-  profileImg: string;
-  profileName: string;
-  createdAt: string;
-  lastLoggedIn: string;
-};
 
 export default function ProfileSection({
   profileImg,

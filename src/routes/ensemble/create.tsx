@@ -10,6 +10,7 @@ import "react-dropdown/style.css";
 
 import styles from "./ensemble.module.css";
 import Button from "../../components/button/Button";
+import { CreateEnsembleFormData, DecodedToken } from "../../types/types";
 
 // API URL
 const baseUrl = "http://localhost:3000";
@@ -18,15 +19,6 @@ export const Route = createFileRoute("/ensemble/create")({
   component: CreateEnsembleComponent,
   beforeLoad: tokenVerification,
 });
-
-// type for decoded token
-type DecodedToken = {
-  fullName: string;
-  email: string;
-  ensembleIds: string[];
-  createdAt: string;
-  id: string;
-};
 
 const activeMusiciansOptions = ["1-4", "5-9", "10-24", "25-49", "50+"];
 const practiceTypeOptions = ["continuous", "project_based"];
@@ -46,18 +38,6 @@ const genreOptions = [
   "late-romantic",
   "symphonic",
 ];
-
-type CreateEnsemble = {
-  name: string;
-  description: string;
-  website: string;
-  zipCode: string;
-  city: string;
-  activeMusicians: string;
-  practiceFrequency: string;
-  practiceType: string;
-  genre: string;
-};
 
 function CreateEnsembleComponent() {
   const token = localStorage.getItem("access_token");
@@ -83,9 +63,9 @@ function CreateEnsembleComponent() {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<CreateEnsemble>();
+  } = useForm<CreateEnsembleFormData>();
 
-  const mutation = useMutation<void, Error, CreateEnsemble>({
+  const mutation = useMutation<void, Error, CreateEnsembleFormData>({
     mutationFn: (newEnsemble) => {
       if (!token) {
         console.error("No token found");
@@ -105,7 +85,7 @@ function CreateEnsembleComponent() {
     },
   });
 
-  const onSubmit = (data: CreateEnsemble) => {
+  const onSubmit = (data: CreateEnsembleFormData) => {
     const newEnsemble = {
       ...data,
       registeredUsers: [

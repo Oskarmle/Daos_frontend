@@ -1,11 +1,5 @@
+import { Reviewer } from "../../types/types";
 import styles from "./reviewBox.module.css";
-
-type Reviewer = {
-  reviewText: string;
-  reviewImg: string;
-  reviewName: string;
-  reviewEnsemble: string;
-};
 
 export default function ReviewBox({
   reviewText,
