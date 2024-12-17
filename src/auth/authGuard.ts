@@ -7,10 +7,4 @@ export function tokenVerification() {
   if (!token) {
     throw redirect({ to: "/auth/login" });
   }
-
-  // const decodedToken = jwtDecode(token)
-  // console.log(decodedToken);
-  
-
-  // console.log("token", token);
 }

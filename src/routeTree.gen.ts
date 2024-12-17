@@ -14,6 +14,8 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as ProfileIndexImport } from './routes/profile/index'
 import { Route as PostsIndexImport } from './routes/posts/index'
+import { Route as EnsembleIndexImport } from './routes/ensemble/index'
+import { Route as EnsembleCreateImport } from './routes/ensemble/create'
 import { Route as AuthSignupImport } from './routes/auth/signup'
 import { Route as AuthLoginImport } from './routes/auth/login'
 
@@ -34,6 +36,18 @@ const ProfileIndexRoute = ProfileIndexImport.update({
 const PostsIndexRoute = PostsIndexImport.update({
   id: '/posts/',
   path: '/posts/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const EnsembleIndexRoute = EnsembleIndexImport.update({
+  id: '/ensemble/',
+  path: '/ensemble/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const EnsembleCreateRoute = EnsembleCreateImport.update({
+  id: '/ensemble/create',
+  path: '/ensemble/create',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -74,6 +88,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSignupImport
       parentRoute: typeof rootRoute
     }
+    '/ensemble/create': {
+      id: '/ensemble/create'
+      path: '/ensemble/create'
+      fullPath: '/ensemble/create'
+      preLoaderRoute: typeof EnsembleCreateImport
+      parentRoute: typeof rootRoute
+    }
+    '/ensemble/': {
+      id: '/ensemble/'
+      path: '/ensemble'
+      fullPath: '/ensemble'
+      preLoaderRoute: typeof EnsembleIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/posts/': {
       id: '/posts/'
       path: '/posts'
@@ -97,6 +125,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/signup': typeof AuthSignupRoute
+  '/ensemble/create': typeof EnsembleCreateRoute
+  '/ensemble': typeof EnsembleIndexRoute
   '/posts': typeof PostsIndexRoute
   '/profile': typeof ProfileIndexRoute
 }
@@ -105,6 +135,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/signup': typeof AuthSignupRoute
+  '/ensemble/create': typeof EnsembleCreateRoute
+  '/ensemble': typeof EnsembleIndexRoute
   '/posts': typeof PostsIndexRoute
   '/profile': typeof ProfileIndexRoute
 }
@@ -114,20 +146,38 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/signup': typeof AuthSignupRoute
+  '/ensemble/create': typeof EnsembleCreateRoute
+  '/ensemble/': typeof EnsembleIndexRoute
   '/posts/': typeof PostsIndexRoute
   '/profile/': typeof ProfileIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth/login' | '/auth/signup' | '/posts' | '/profile'
+  fullPaths:
+    | '/'
+    | '/auth/login'
+    | '/auth/signup'
+    | '/ensemble/create'
+    | '/ensemble'
+    | '/posts'
+    | '/profile'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth/login' | '/auth/signup' | '/posts' | '/profile'
+  to:
+    | '/'
+    | '/auth/login'
+    | '/auth/signup'
+    | '/ensemble/create'
+    | '/ensemble'
+    | '/posts'
+    | '/profile'
   id:
     | '__root__'
     | '/'
     | '/auth/login'
     | '/auth/signup'
+    | '/ensemble/create'
+    | '/ensemble/'
     | '/posts/'
     | '/profile/'
   fileRoutesById: FileRoutesById
@@ -137,6 +187,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthSignupRoute: typeof AuthSignupRoute
+  EnsembleCreateRoute: typeof EnsembleCreateRoute
+  EnsembleIndexRoute: typeof EnsembleIndexRoute
   PostsIndexRoute: typeof PostsIndexRoute
   ProfileIndexRoute: typeof ProfileIndexRoute
 }
@@ -145,6 +197,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthSignupRoute: AuthSignupRoute,
+  EnsembleCreateRoute: EnsembleCreateRoute,
+  EnsembleIndexRoute: EnsembleIndexRoute,
   PostsIndexRoute: PostsIndexRoute,
   ProfileIndexRoute: ProfileIndexRoute,
 }
@@ -162,6 +216,8 @@ export const routeTree = rootRoute
         "/",
         "/auth/login",
         "/auth/signup",
+        "/ensemble/create",
+        "/ensemble/",
         "/posts/",
         "/profile/"
       ]
@@ -174,6 +230,12 @@ export const routeTree = rootRoute
     },
     "/auth/signup": {
       "filePath": "auth/signup.tsx"
+    },
+    "/ensemble/create": {
+      "filePath": "ensemble/create.tsx"
+    },
+    "/ensemble/": {
+      "filePath": "ensemble/index.tsx"
     },
     "/posts/": {
       "filePath": "posts/index.tsx"

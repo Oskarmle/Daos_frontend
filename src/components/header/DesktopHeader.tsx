@@ -3,6 +3,8 @@ import styles from "./desktopHeader.module.css";
 
 import { useRouter } from "@tanstack/react-router";
 
+const token = localStorage.getItem("access_token");
+
 export default function DesktopHeader() {
   const router = useRouter();
 
@@ -20,6 +22,15 @@ export default function DesktopHeader() {
   };
   const handleHomeClick = () => {
     router.navigate({ to: "/" });
+  };
+  const handleEnsembleClick = () => {
+    router.navigate({ to: "/ensemble" });
+  };
+
+  const handleLogoutClick = () => {
+    localStorage.removeItem("access_token");
+    alert("Du er nu logget ud");
+    window.location.reload();
   };
 
   return (
@@ -40,15 +51,28 @@ export default function DesktopHeader() {
           onClick={handleProfileClick}
         ></Button>
         <Button
+          buttonText="Se ensembles"
+          variant="noOutline"
+          onClick={handleEnsembleClick}
+        ></Button>
+        <Button
           buttonText="Opret profil"
           variant="primary"
           onClick={handleCreateProfileClick}
         ></Button>
-        <Button
-          buttonText="Log ind"
-          variant="secondary"
-          onClick={handleLoginClick}
-        ></Button>
+        {!token ? (
+          <Button
+            buttonText="Log ind"
+            variant="secondary"
+            onClick={handleLoginClick}
+          ></Button>
+        ) : (
+          <Button
+            buttonText="Log ud"
+            variant="secondary"
+            onClick={handleLogoutClick}
+          ></Button>
+        )}
       </div>
     </div>
   );

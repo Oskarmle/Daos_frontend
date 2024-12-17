@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
 import styles from "./auth.module.css";
 import Button from "../../components/button/Button";
 import { useForm } from "react-hook-form";
@@ -23,6 +23,7 @@ function LoginComponent() {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormData>();
+  const router = useRouter();
 
   const mutation = useMutation<void, Error, LoginFormData>({
     mutationFn: (loginUser) => {
@@ -36,13 +37,15 @@ function LoginComponent() {
 
       // access the access_token sent from the backend
       // console.log(response.data.access_token);
-      localStorage.setItem('access_token', response.data.access_token);
+      localStorage.setItem("access_token", response.data.access_token);
+      router.navigate({ to: "/profile" });
     },
   });
 
   const onSubmit = (data: LoginFormData) => {
     console.log(data);
     mutation.mutate(data);
+    // alert("Du er nu logget ind!");
   };
 
   return (
