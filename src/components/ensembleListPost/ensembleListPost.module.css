@@ -1,6 +1,6 @@
 .ensembleListPostContainer {
   width: 320px;
-  height: 140px;
+  height: 180px;
   border-radius: 10px;
   border: 1px solid #dddddd;
   display: flex;
@@ -33,4 +33,10 @@
   height: 20px;
   margin-top: auto;
   border-radius: 0 0 10px 10px;
+}
+
+.buttonContainer{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }

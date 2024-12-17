@@ -11,6 +11,14 @@ import { createFileRoute } from "@tanstack/react-router";
 // API URL
 const baseUrl = "http://localhost:3000";
 
+type EnsemblePost = {
+  city: string;
+  name: string;
+  activeMusicians: string;
+  genre: string;
+  _id: string;
+};
+
 export const Route = createFileRoute("/ensemble/")({
   component: EnsembleComponent,
 });
@@ -36,7 +44,7 @@ function EnsembleComponent() {
   }
 
   if (isSuccess) {
-    // console.log("Successfully fetched ensembles", data);
+    console.log("Successfully fetched ensembles", data);
   }
 
   return (
@@ -51,9 +59,17 @@ function EnsembleComponent() {
       </div>
       <h2 className={styles.header2}>Alle ensembles</h2>
       <div className={styles.ensembleListContainer}>
-        {data && data.map((ensemble: { city: string; name: string; activeMusicians: string; genre: string;}) => (
-            <EnsembleListPost city={ensemble.city} name={ensemble.name} size={ensemble.activeMusicians} genre={ensemble.genre}/>
-        ))}
+        {data &&
+          data.map((ensemble: EnsemblePost) => (
+            <EnsembleListPost
+              key={ensemble.name}
+              city={ensemble.city}
+              name={ensemble.name}
+              size={ensemble.activeMusicians}
+              genre={ensemble.genre}
+              _id={ensemble._id}
+            />
+          ))}
       </div>
     </div>
   );
