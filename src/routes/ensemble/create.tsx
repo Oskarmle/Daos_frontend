@@ -13,7 +13,7 @@ import Button from "../../components/button/Button";
 import { CreateEnsembleFormData, DecodedToken } from "../../types/types";
 
 // API URL
-const baseUrl = "http://localhost:3000";
+const baseUrl = "http://localhost:5000";
 
 export const Route = createFileRoute("/ensemble/create")({
   component: CreateEnsembleComponent,

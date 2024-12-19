@@ -10,7 +10,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { EnsemblePost } from "../../types/types";
 
 // API URL
-const baseUrl = "http://localhost:3000";
+const baseUrl = "http://localhost:5000";
 
 export const Route = createFileRoute("/ensemble/")({
   component: EnsembleComponent,
