@@ -20,6 +20,7 @@ export const Route = createFileRoute("/ensemble/create")({
   beforeLoad: tokenVerification,
 });
 
+// Dropdown options
 const activeMusiciansOptions = ["1-4", "5-9", "10-24", "25-49", "50+"];
 const practiceTypeOptions = ["continuous", "project_based"];
 const practiceFrequencyOptions = [

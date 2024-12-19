@@ -33,6 +33,8 @@ export default function EnsembleListPost({
     id: "",
   };
 
+
+  // Decoding the token
   if (token) {
     try {
       decodedToken = jwtDecode<DecodedToken>(token);
@@ -41,15 +43,13 @@ export default function EnsembleListPost({
     }
   }
 
+  // User joining the ensemble, data from token
   const userJoining = {
     fullName: decodedToken.fullName,
     id: decodedToken.id,
   };
 
   function handleJoinEnsemble() {
-    console.log(
-      `I want to join the ensemble with the id ${_id} and name ${name}`
-    );
     console.log(userJoining);
     mutation.mutate({ registeredUsers: [userJoining] });
   }
