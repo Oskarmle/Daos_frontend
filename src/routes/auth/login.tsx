@@ -13,11 +13,14 @@ export const Route = createFileRoute("/auth/login")({
   component: LoginComponent,
 });
 
+// Define the component
 function LoginComponent() {
+  // destructuring the hook useForm to get the register function and the handleSubmit function
   const {
     register,
     handleSubmit,
     formState: { errors },
+    // gives the hook useForm access to the type LoginFormData
   } = useForm<LoginFormData>();
   const router = useRouter();
 
@@ -29,10 +32,6 @@ function LoginComponent() {
       console.error("Login failed", error);
     },
     onSuccess: (response) => {
-      // console.log("Login was a succes", response);
-
-      // access the access_token sent from the backend
-      // console.log(response.data.access_token);
       localStorage.setItem("access_token", response.data.access_token);
       router.navigate({ to: "/profile" });
     },
@@ -41,7 +40,6 @@ function LoginComponent() {
   const onSubmit = (data: LoginFormData) => {
     console.log(data);
     mutation.mutate(data);
-    // alert("Du er nu logget ind!");
   };
 
   return (

@@ -2,7 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import Hero from "../components/hero/Hero";
 import ReviewBox from "../components/reviewBox/ReviewBox";
 
+// This is the index route, it will be rendered at the root path
+// It created the route "/". The "/" is the path of the route
 export const Route = createFileRoute("/")({
+  // When the route "/" is accessed, the Index component will be rendered
   component: Index,
 });
 

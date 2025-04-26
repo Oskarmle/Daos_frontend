@@ -13,7 +13,7 @@ import {
 } from "../../types/types";
 
 // API URL
-const baseUrl = "http://localhost:3000";
+const baseUrl = "http://localhost:5000";
 
 export default function EnsembleListPost({
   name,
@@ -23,6 +23,7 @@ export default function EnsembleListPost({
   _id,
   registeredUsers,
 }: PostElements) {
+  // Get token from local storage
   const token = localStorage.getItem("access_token");
   // default values
   let decodedToken: DecodedToken = {
@@ -32,7 +33,6 @@ export default function EnsembleListPost({
     createdAt: "",
     id: "",
   };
-
 
   // Decoding the token
   if (token) {
@@ -54,7 +54,7 @@ export default function EnsembleListPost({
     mutation.mutate({ registeredUsers: [userJoining] });
   }
 
-  const mutation = useMutation<VideoDecoder, Error, RegisteredUsersPayload>({
+  const mutation = useMutation<void, Error, RegisteredUsersPayload>({
     mutationFn: (updateEnsemble) => {
       return axios.patch(`${baseUrl}/ensembles/${_id}`, updateEnsemble, {
         headers: {
@@ -71,6 +71,7 @@ export default function EnsembleListPost({
   });
 
   // check if the user is already registered in the array
+  // if the user is in the array, the button will not be displayed
   const isUserInEnsemble = registeredUsers?.some(
     (user) => user.id === decodedToken.id
   );

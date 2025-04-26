@@ -38,35 +38,12 @@ export type EnsemblePost = {
   registeredUsers: RegisteredUsers[];
 };
 
-// Type for button props
-export type ButtonProps = {
-  buttonText: string;
-  onClick?: () => void;
-  type?: "button" | "submit" | "reset";
-  variant:
-    | "primary"
-    | "secondary"
-    | "tertiary"
-    | "disabled"
-    | "noOutline"
-    | "smallPrimary"
-    | "smallSecondary";
-};
-
 // Type for profile section in profile.index file
 export type ProfileInfo = {
   profileImg: string;
   profileName: string;
   createdAt: string;
   lastLoggedIn: string;
-};
-
-// Type for review component in index
-export type Reviewer = {
-  reviewText: string;
-  reviewImg: string;
-  reviewName: string;
-  reviewEnsemble: string;
 };
 
 // Login form
